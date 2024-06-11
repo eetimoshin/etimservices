@@ -1,4 +1,4 @@
-package com.etim.notification;
+package com.etim.clients.notification;
 
 import java.time.LocalDateTime;
 
