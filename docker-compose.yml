@@ -2,7 +2,7 @@ services:
 
   postgres:
     container_name: postgres
-    image: postgres:latest
+    image: postgres:16-alpine
     environment:
       POSTGRES_USER: etimoshin
       POSTGRES_PASSWORD: password
@@ -17,7 +17,7 @@ services:
 
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4:latest
+    image: dpage/pgadmin4:8
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
       PGADMIN_DEFAULT_PASSWORD: root
@@ -45,31 +45,31 @@ services:
     networks:
       - spring
 
-#  eureka-server:
-#    image: etimoshin/eureka-server:latest
-#    container_name: eureka-server
-#    ports:
-#      - 8761:8761
-#    networks:
-#      - spring
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    depends_on:
-#      - zipkin
-#
-#  apigw:
-#    image: etimoshin/apigw:latest
-#    container_name: apigw
-#    ports:
-#      - 8084:8084
-#    networks:
-#      - spring
-#    environment:
-#      - SPRING_PROFILES_ACTIVE=docker
-#    depends_on:
-#      - zipkin
-#      - eureka-server
-#
+  eureka-server:
+    image: etimoshin/eureka-server:latest
+    container_name: eureka-server
+    ports:
+      - 8761:8761
+    networks:
+      - spring
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - zipkin
+
+  apigw:
+    image: etimoshin/apigw:latest
+    container_name: apigw
+    ports:
+      - 8084:8084
+    networks:
+      - spring
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - zipkin
+      - eureka-server
+
   customer:
     image: etimoshin/customer:latest
     container_name: customer
@@ -84,7 +84,7 @@ services:
       - postgres
       - zipkin
       - rabbitmq
-#      - eureka-server
+      - eureka-server
 
   fraud:
     image: etimoshin/fraud:latest
@@ -99,7 +99,7 @@ services:
     depends_on:
       - postgres
       - zipkin
-#      - eureka-server
+      - eureka-server
       - rabbitmq
 
   notification:
@@ -116,7 +116,7 @@ services:
       - postgres
       - zipkin
       - rabbitmq
-#      - eureka-server
+      - eureka-server
 
 networks:
   postgres:

@@ -26,4 +26,5 @@ public class Notification {
     private String sender;
     private String message;
     private LocalDateTime sendAt;
+
 }

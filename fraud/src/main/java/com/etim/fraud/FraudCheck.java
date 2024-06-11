@@ -25,4 +25,5 @@ public class FraudCheck {
     private Integer customerId;
     private Boolean isFraudster;
     private LocalDateTime createdAt;
+
 }

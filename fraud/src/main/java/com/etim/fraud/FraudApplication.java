@@ -12,5 +12,6 @@ import org.springframework.context.annotation.PropertySources;
 public class FraudApplication {
     public static void main(String[] args) {
         SpringApplication.run(FraudApplication.class, args);
+
     }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/fraud-check")
 @Slf4j
 public class FraudCheckController {
+
     private final FraudCheckService fraudCheckService;
 
     @GetMapping("/{customerId}")
@@ -21,4 +22,5 @@ public class FraudCheckController {
         log.info("fraud check request for customer {}", customerId);
         return new FraudCheckResponse(isFraud);
     }
+
 }
